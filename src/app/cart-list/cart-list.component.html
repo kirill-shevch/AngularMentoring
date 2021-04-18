@@ -1,0 +1,9 @@
+<div *ngIf="productsInCart.length > 0; then thenBlock else elseBlock"></div>
+<ng-template #thenBlock>
+    <p>Your cart:</p>
+    <li *ngFor="let item of productsInCart; index as i;">
+        {{i}}. Product name: {{item.name}}, Product price: {{item.price}}
+    </li>
+    Your cart price is {{getCartSum()}}
+</ng-template>
+<ng-template #elseBlock>Your cart is empty!</ng-template>
