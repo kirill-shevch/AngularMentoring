@@ -1,23 +1,26 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { Product } from 'src/app/products/models/product';
 import { CartService } from '../../services/cart.service';
-import { ProductModel } from '../../../products/services/product.service';
 
 @Component({
   selector: 'app-cart-list',
   templateUrl: './cart-list.component.html',
   styleUrls: ['./cart-list.component.css']
 })
-export class CartListComponent implements OnInit {
+export class CartListComponent {
 
-  productsInCart: Array<ProductModel> = [];
+  productsInCart: Product[] = [];
 
-  constructor(private cartService: CartService) { }
 
-  ngOnInit(): void {
-    this.productsInCart = this.cartService.getProducts();
+  public get isEmptyProduts(): boolean {
+    return this.productsInCart.length > 0;
   }
 
-  getCartSum(): number {
-    return this.productsInCart.reduce((sum, current) => sum + current.price, 0);
+  public getCartSum(): number {
+    return this.productsInCart.reduce((sum, { price }) => sum + price, 0);
+  }
+
+  constructor(private cartService: CartService) {
+    this.productsInCart = this.cartService.getProducts();
   }
 }
