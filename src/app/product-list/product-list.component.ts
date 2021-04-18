@@ -1,6 +1,6 @@
 import { stringify } from '@angular/compiler/src/util';
 import { Component, OnInit } from '@angular/core';
-import { ProductService } from '../services/product.service';
+import { ProductModel, ProductService } from '../services/product.service';
 
 @Component({
   selector: 'app-product-list',
@@ -15,7 +15,7 @@ export class ProductListComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  getProducts(): Array<string> {
-    return this.productService.getProducts().map(item => `Product name: ${item.name}, Product price: ${item.price}`);
+  getProducts(): Array<ProductModel> {
+    return this.productService.getProducts();
   }
 }

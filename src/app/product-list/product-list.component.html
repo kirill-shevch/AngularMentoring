@@ -1,4 +1,5 @@
 <p>product-list:</p>
 <li *ngFor="let item of getProducts(); index as i;">
-    {{i}}. {{item}} <app-product></app-product>
+    {{i}}. Product name: {{item.name}}, Product price: {{item.price}} <app-product [name]=item.name [price]=item.price>
+    </app-product>
 </li>

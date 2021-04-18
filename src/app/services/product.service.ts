@@ -9,17 +9,15 @@ export class ProductService {
 
   getProducts(): Array<ProductModel> {
     return [
-      new ProductModel("Chair", 10),
-      new ProductModel("Sofa", 40)
+      { name: "Chair", price: 10 },
+      { name: "Sofa", price: 40 }
     ];
   }
 }
 
-class ProductModel {
-  name: string;
-  price: number;
-  constructor(name: string, price: number) {
-    this.name = name;
-    this.price = price;
+export class ProductModel {
+  name: string = "";
+  price: number = 0;
+  constructor() {
   }
 }
