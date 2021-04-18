@@ -1,6 +1,6 @@
 import { stringify } from '@angular/compiler/src/util';
 import { Component, OnInit } from '@angular/core';
-import { ProductModel, ProductService } from '../services/product.service';
+import { ProductModel, ProductService } from '../../services/product.service';
 
 @Component({
   selector: 'app-product-list',
