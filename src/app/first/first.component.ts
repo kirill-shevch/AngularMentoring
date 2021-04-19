@@ -10,18 +10,18 @@ export class FirstComponent implements OnInit {
   constructor() {
   }
 
+  name = 'Market';
+  description = 'A shop next door';
+  price = 10;
+  category: Category = Category.Drink;
+  isAvailable = true;
+
   ngOnInit(): void {
   }
 
   getCategoryName(): string {
     return Category[this.category];
   }
-
-  name: string = "Market";
-  description: string = "A shop next door";
-  price: number = 10;
-  category: Category = Category.Drink;
-  isAvailable: boolean = true;
 }
 
 enum Category {

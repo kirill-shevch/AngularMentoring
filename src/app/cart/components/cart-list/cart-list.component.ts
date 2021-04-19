@@ -12,10 +12,14 @@ export class CartListComponent {
   productsInCart: Product[] = [];
 
 
+  // этот код можно также перенести в сервис
   public get isEmptyProduts(): boolean {
     return this.productsInCart.length > 0;
   }
 
+  // и этот код можно в сервис перенести.
+  // не стоит в компонентах использовать низкоуровневые выражения для подсчетов,
+  // для всего этого лучшеее место - сервис.
   public getCartSum(): number {
     return this.productsInCart.reduce((sum, { price }) => sum + price, 0);
   }
