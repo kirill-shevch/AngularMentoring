@@ -12,7 +12,7 @@ export class ProductListComponent {
   products: Product[] = [];
 
   constructor(private productService: ProductService,
-    private cartService: CartService) {
+              private cartService: CartService) {
     this.products = this.getProducts();
   }
 

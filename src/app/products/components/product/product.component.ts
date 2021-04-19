@@ -8,11 +8,12 @@ import { CartService } from '../../../cart/services/cart.service';
 })
 export class ProductComponent implements OnInit {
 
+  // почему бы не передать объект целиком? будет один инпут.
   @Input()
-  name: string = "";
+  name = '';
 
   @Input()
-  price: number = 0;
+  price = 0;
 
   constructor(private cartService: CartService) { }
 
