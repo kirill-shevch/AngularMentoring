@@ -12,7 +12,7 @@ export class CartService {
   }
 
   addProduct(name: string, price: number): void {
-    this.productsInCart.push({ name, price });
+    this.productsInCart.push({ name, price, available: true });
   }
 
   isEmptyProduts(): boolean {

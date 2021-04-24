@@ -14,6 +14,9 @@ export class ProductComponent implements OnInit {
   @Input()
   price = 0;
 
+  @Input()
+  available = false;
+
   constructor(private cartService: CartService) { }
 
   ngOnInit(): void {
