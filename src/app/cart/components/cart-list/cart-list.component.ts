@@ -13,11 +13,11 @@ export class CartListComponent {
 
 
   public get isEmptyProduts(): boolean {
-    return this.productsInCart.length > 0;
+    return this.cartService.isEmptyProduts();
   }
 
   public getCartSum(): number {
-    return this.productsInCart.reduce((sum, { price }) => sum + price, 0);
+    return this.cartService.getCartSum();
   }
 
   constructor(private cartService: CartService) {

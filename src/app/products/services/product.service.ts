@@ -7,8 +7,8 @@ import { Product } from '../models/product';
 export class ProductService {
   getProducts(): Product[] {
     return [
-      { name: "Chair", price: 10 },
-      { name: "Sofa", price: 40 }
+      { name: 'Chair', price: 10 },
+      { name: 'Sofa', price: 40 }
     ];
   }
 }
