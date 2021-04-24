@@ -23,17 +23,11 @@ export class CartListComponent {
     return this.cartService.getCartCount();
   }
 
-  public addProduct(name: string, price: number) {
-    this.cartService.addProduct(name, price);
-    this.productsInCart = this.cartService.getProducts();
-  }
-
-  public removeProduct(name: string) {
-    this.cartService.removeProduct(name);
+  public getProducts(): void {
     this.productsInCart = this.cartService.getProducts();
   }
 
   constructor(private cartService: CartService) {
-    this.productsInCart = this.cartService.getProducts();
+    this.getProducts();
   }
 }

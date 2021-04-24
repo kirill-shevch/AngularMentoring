@@ -21,7 +21,7 @@ export class CartService {
     }
   }
 
-  removeProduct(name: string): void {
+  decreaseProductCount(name: string): void {
     var product = this.productsInCart.find(x => x.name == name);
     if (product == null) {
       console.log(`${name} is not in the cart!`);
@@ -31,6 +31,16 @@ export class CartService {
     }
     else {
       product.count--;
+    }
+  }
+
+  removeProduct(name: string): void {
+    var product = this.productsInCart.find(x => x.name == name);
+    if (product == null) {
+      console.log(`${name} is not in the cart!`);
+    }
+    else {
+      this.productsInCart = this.productsInCart.filter(x => x.name !== name);
     }
   }
 
