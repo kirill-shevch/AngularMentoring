@@ -2,7 +2,9 @@
 <ng-template #thenBlock>
     <p>Your cart:</p>
     <li *ngFor="let product of productsInCart; index as i;">
-        {{i}}. Product name: {{product.name}}; Product price: {{product.price}}; Count: {{product.count}}
+        {{i}}. Product name: {{product.name}}; Product price: {{product.price}}; Count: {{product.count}} <button
+            (click)="addProduct(product.name, product.price)">+</button><button
+            (click)="removeProduct(product.name)">-</button>
     </li>
     Products count: {{getCartCount()}}; Your cart price is {{getCartSum()}}
 </ng-template>
