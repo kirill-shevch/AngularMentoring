@@ -1,18 +1,37 @@
 import { Injectable } from '@angular/core';
-import { Product } from 'src/app/products/models/product';
+import { CartProduct } from '../models/cartProduct';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
-  private productsInCart: Product[] = [];
+  private productsInCart: CartProduct[] = [];
 
-  getProducts(): Product[] {
+  getProducts(): CartProduct[] {
     return this.productsInCart;
   }
 
   addProduct(name: string, price: number): void {
-    this.productsInCart.push({ name, price, available: true });
+    var product = this.productsInCart.find(x => x.name == name);
+    if (product != null) {
+      product.count++;
+    }
+    else {
+      this.productsInCart.push({ name, price, count: 1 });
+    }
+  }
+
+  removeProduct(name: string): void {
+    var product = this.productsInCart.find(x => x.name == name);
+    if (product == null) {
+      console.log(`${name} is not in the cart!`);
+    }
+    else if (product.count <= 1) {
+      this.productsInCart = this.productsInCart.filter(x => x.name !== name);
+    }
+    else {
+      product.count--;
+    }
   }
 
   isEmptyProduts(): boolean {
@@ -20,6 +39,10 @@ export class CartService {
   }
 
   public getCartSum(): number {
-    return this.productsInCart.reduce((sum, { price }) => sum + price, 0);
+    return this.productsInCart.reduce((sum, { price, count }) => sum + price * count, 0);
+  }
+
+  public getCartCount(): number {
+    return this.productsInCart.reduce((sum, { count }) => sum + count, 0);
   }
 }

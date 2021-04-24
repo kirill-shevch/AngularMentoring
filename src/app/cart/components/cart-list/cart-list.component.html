@@ -2,8 +2,8 @@
 <ng-template #thenBlock>
     <p>Your cart:</p>
     <li *ngFor="let product of productsInCart; index as i;">
-        {{i}}. Product name: {{product.name}}, Product price: {{product.price}}
+        {{i}}. Product name: {{product.name}}; Product price: {{product.price}}; Count: {{product.count}}
     </li>
-    Your cart price is {{getCartSum()}}
+    Products count: {{getCartCount()}}; Your cart price is {{getCartSum()}}
 </ng-template>
 <ng-template #elseBlock>Your cart is empty!</ng-template>

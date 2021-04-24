@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Product } from 'src/app/products/models/product';
+import { CartProduct } from '../../models/cartProduct';
 import { CartService } from '../../services/cart.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { CartService } from '../../services/cart.service';
 })
 export class CartListComponent {
 
-  productsInCart: Product[] = [];
+  productsInCart: CartProduct[] = [];
 
 
   public get isEmptyProduts(): boolean {
@@ -18,6 +18,10 @@ export class CartListComponent {
 
   public getCartSum(): number {
     return this.cartService.getCartSum();
+  }
+
+  public getCartCount(): number {
+    return this.cartService.getCartCount();
   }
 
   constructor(private cartService: CartService) {
