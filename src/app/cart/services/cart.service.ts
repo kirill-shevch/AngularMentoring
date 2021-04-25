@@ -12,8 +12,8 @@ export class CartService {
   }
 
   addProduct(name: string, price: number): void {
-    var product = this.productsInCart.find(x => x.name == name);
-    if (product != null) {
+    const product = this.getProductByName(name);
+    if (product) {
       product.count++;
     }
     else {
@@ -22,12 +22,12 @@ export class CartService {
   }
 
   decreaseProductCount(name: string): void {
-    var product = this.productsInCart.find(x => x.name == name);
-    if (product == null) {
+    const product = this.getProductByName(name);
+    if (!product) {
       console.log(`${name} is not in the cart!`);
     }
     else if (product.count <= 1) {
-      this.productsInCart = this.productsInCart.filter(x => x.name !== name);
+      this.productsInCart = this.filterByProductName(name);
     }
     else {
       product.count--;
@@ -35,13 +35,17 @@ export class CartService {
   }
 
   removeProduct(name: string): void {
-    var product = this.productsInCart.find(x => x.name == name);
-    if (product == null) {
+    const product = this.getProductByName(name);
+    if (!product) {
       console.log(`${name} is not in the cart!`);
     }
     else {
-      this.productsInCart = this.productsInCart.filter(x => x.name !== name);
+      this.productsInCart = this.filterByProductName(name);
     }
+  }
+
+  private filterByProductName(name: string): CartProduct[] {
+    return this.productsInCart.filter(({ name: cartProductName }) => cartProductName !== name);
   }
 
   isEmptyProduts(): boolean {
@@ -54,5 +58,9 @@ export class CartService {
 
   public getCartCount(): number {
     return this.productsInCart.reduce((sum, { count }) => sum + count, 0);
+  }
+
+  private getProductByName(name: string): CartProduct | undefined {
+    return this.productsInCart.find(({ name: cartProductName }) => cartProductName === name);
   }
 }

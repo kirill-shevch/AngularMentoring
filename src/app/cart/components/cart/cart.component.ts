@@ -10,26 +10,25 @@ import { CartService } from '../../services/cart.service';
 export class CartComponent {
 
   @Input()
-  cartProduct: CartProduct = { name: "default", price: 0, count: 1 };
+  cartProduct: CartProduct = { name: 'default', price: 0, count: 1 };
 
   @Output()
   updateProductsEvent = new EventEmitter();
 
   constructor(private cartService: CartService) { }
 
-  public addProduct(name: string, price: number) {
+  public addProduct(name: string, price: number): void {
     this.cartService.addProduct(name, price);
     this.updateProductsEvent.emit();
   }
 
-  public decreaseProductCount(name: string) {
+  public decreaseProductCount(name: string): void {
     this.cartService.decreaseProductCount(name);
     this.updateProductsEvent.emit();
   }
 
-  public removeProduct(name: string) {
+  public removeProduct(name: string): void {
     this.cartService.removeProduct(name);
     this.updateProductsEvent.emit();
   }
-
 }
