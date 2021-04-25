@@ -6,18 +6,18 @@ import { CartService } from '../../../cart/services/cart.service';
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.css']
 })
-export class ProductComponent implements OnInit {
+export class ProductComponent {
 
   @Input()
-  name: string = "";
+  name = '';
 
   @Input()
-  price: number = 0;
+  price = 0;
+
+  @Input()
+  available = false;
 
   constructor(private cartService: CartService) { }
-
-  ngOnInit(): void {
-  }
 
   onBuy(): void {
     console.log(`${this.name} bought! The price is ${this.price}`);
