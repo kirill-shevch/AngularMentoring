@@ -1,4 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
+import { Observable } from 'rxjs/internal/Observable';
+import { of } from 'rxjs/internal/observable/of';
 import { CartProduct } from '../../models/cartProduct';
 import { CartService } from '../../services/cart.service';
 
@@ -9,7 +11,7 @@ import { CartService } from '../../services/cart.service';
 })
 export class CartListComponent {
 
-  productsInCart: CartProduct[] = [];
+  public productsInCart: Observable<CartProduct[]> = of([] as CartProduct[]);
 
   public get isEmptyProduts(): boolean {
     return this.cartService.isEmptyProduts();
@@ -23,11 +25,19 @@ export class CartListComponent {
     return this.cartService.getCartCount();
   }
 
-  public getProducts(): void {
-    this.productsInCart = this.cartService.getProducts();
+  public addProduct(product: any): void {
+    this.cartService.addProduct(product.name, product.price);
+  }
+
+  public decreaseProductCount(name: string): void {
+    this.cartService.decreaseProductCount(name);
+  }
+
+  public removeProduct(name: string): void {
+    this.cartService.removeProduct(name);
   }
 
   constructor(private cartService: CartService) {
-    this.getProducts();
+    this.productsInCart = this.cartService.getProducts();
   }
 }

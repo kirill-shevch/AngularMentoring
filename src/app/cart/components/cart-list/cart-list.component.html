@@ -1,8 +1,9 @@
 <ng-template *ngIf="isEmptyProduts; then thenBlock else elseBlock"></ng-template>
 <ng-template #thenBlock>
     <p>Your cart:</p>
-    <li *ngFor="let product of productsInCart; index as i;">
-        {{i}}. <app-cart [cartProduct]=product (updateProductsEvent)=getProducts()></app-cart>
+    <li *ngFor="let product of productsInCart|async; index as i;">
+        {{i}}. <app-cart [cartProduct]=product (add)=addProduct($event) (decreaseCount)=decreaseProductCount($event)
+            (remove)=removeProduct($event)></app-cart>
     </li>
     Products count: {{getCartCount()}}; Your cart price is {{getCartSum()}}
 </ng-template>

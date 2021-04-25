@@ -1,66 +1,73 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
+import { Observable } from 'rxjs/internal/Observable';
 import { CartProduct } from '../models/cartProduct';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
-  private productsInCart: CartProduct[] = [];
+  private productsInCart: BehaviorSubject<CartProduct[]> = new BehaviorSubject([] as CartProduct[]);
 
-  getProducts(): CartProduct[] {
-    return this.productsInCart;
+  public get productsInCartState(): CartProduct[] {
+    return this.productsInCart.getValue();
   }
 
-  addProduct(name: string, price: number): void {
+  public getProducts(): Observable<CartProduct[]> {
+    return this.productsInCart.asObservable();
+  }
+
+  public addProduct(name: string, price: number): void {
     const product = this.getProductByName(name);
     if (product) {
       product.count++;
     }
     else {
-      this.productsInCart.push({ name, price, count: 1 });
+      const nextStateProductCart = [...this.productsInCartState, { name, price, count: 1 }];
+      this.productsInCart.next(nextStateProductCart);
     }
   }
 
-  decreaseProductCount(name: string): void {
+  public decreaseProductCount(name: string): void {
     const product = this.getProductByName(name);
     if (!product) {
       console.log(`${name} is not in the cart!`);
     }
     else if (product.count <= 1) {
-      this.productsInCart = this.filterByProductName(name);
+      this.productsInCart.next(this.filterByProductName(name));
     }
     else {
       product.count--;
     }
   }
 
-  removeProduct(name: string): void {
+  public removeProduct(name: string): void {
     const product = this.getProductByName(name);
     if (!product) {
       console.log(`${name} is not in the cart!`);
     }
     else {
-      this.productsInCart = this.filterByProductName(name);
+      this.productsInCart.next(this.filterByProductName(name));
     }
   }
 
-  private filterByProductName(name: string): CartProduct[] {
-    return this.productsInCart.filter(({ name: cartProductName }) => cartProductName !== name);
-  }
-
-  isEmptyProduts(): boolean {
-    return this.productsInCart.length > 0;
+  public isEmptyProduts(): boolean {
+    return this.productsInCartState.length > 0;
   }
 
   public getCartSum(): number {
-    return this.productsInCart.reduce((sum, { price, count }) => sum + price * count, 0);
+    return this.productsInCartState.reduce((sum, { price, count }) => sum + price * count, 0);
   }
 
   public getCartCount(): number {
-    return this.productsInCart.reduce((sum, { count }) => sum + count, 0);
+    return this.productsInCartState.reduce((sum, { count }) => sum + count, 0);
+  }
+
+  private filterByProductName(name: string): CartProduct[] {
+    return this.productsInCartState.filter(({ name: cartProductName }) => cartProductName !== name);
   }
 
   private getProductByName(name: string): CartProduct | undefined {
-    return this.productsInCart.find(({ name: cartProductName }) => cartProductName === name);
+    return this.productsInCartState.find(({ name: cartProductName }) => cartProductName === name);
   }
 }
