@@ -1,4 +1,6 @@
-Product name: {{cartProduct.name}}; Product price: {{cartProduct.price}}; Count: {{cartProduct.count}} <button
-  (click)="addProduct(cartProduct.name, cartProduct.price)">+</button><button
-  (click)="decreaseProductCount(cartProduct.name)">-</button><button
-  (click)="removeProduct(cartProduct.name)">x</button>
+<div appHighlight style="display: inline;">
+  Product name: {{cartProduct.name}}; Product price: {{cartProduct.price}}; Count: {{cartProduct.count}} <button
+    (click)="addProduct(cartProduct.name, cartProduct.price)">+</button><button
+    (click)="decreaseProductCount(cartProduct.name)">-</button><button
+    (click)="removeProduct(cartProduct.name)">x</button>
+</div>
