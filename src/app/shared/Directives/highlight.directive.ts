@@ -1,23 +1,24 @@
 import { Directive, HostBinding, HostListener } from '@angular/core';
 
 @Directive({
-  selector: '[appHighlight]'
+  selector: '[appChangeBackgroundColor]'
 })
-export class HighlightDirective {
+export class ChangeBackgroundColorDirective {
 
   @HostBinding('style.background-color')
-  backgroundColor: string = 'transparent';
+  backgroundColor = 'transparent';
 
-  @HostListener('mouseenter') onMouseEnter() {
-    this.highlight('yellow');
+  @HostListener('mouseenter') onMouseEnter(): void {
+    this.changeBackgroundColor('yellow');
   }
 
-  @HostListener('mouseleave') onMouseLeave() {
-    this.highlight('transparent');
+  @HostListener('mouseleave') onMouseLeave(): void {
+    this.changeBackgroundColor('transparent');
   }
 
-  private highlight(color: string) {
+  private changeBackgroundColor(color: Colors): void {
     this.backgroundColor = color;
   }
-
 }
+
+type Colors = "transparent" | "yellow";
