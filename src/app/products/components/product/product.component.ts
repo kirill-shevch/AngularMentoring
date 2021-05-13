@@ -8,6 +8,7 @@ import { CartService } from '../../../cart/services/cart.service';
 })
 export class ProductComponent {
 
+  // можно передать данные одним инпутом - целый объект
   @Input()
   name = '';
 

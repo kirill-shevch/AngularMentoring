@@ -11,6 +11,9 @@ export class AppComponent implements AfterViewInit {
 
   @ViewChild('appTitle')
   appTitle: ElementRef<HTMLHeadingElement> | undefined;
+  // or
+  // appTitle!: ElementRef<HTMLHeadingElement>;
+
 
   ngAfterViewInit(): void {
     if (this.appTitle !== undefined) {
