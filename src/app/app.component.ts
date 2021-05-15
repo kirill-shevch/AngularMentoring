@@ -10,7 +10,7 @@ export class AppComponent implements AfterViewInit {
   title = 'shop';
 
   @ViewChild('appTitle')
-  appTitle: ElementRef<HTMLHeadingElement> | undefined;
+  appTitle!: ElementRef<HTMLHeadingElement>;
 
   ngAfterViewInit(): void {
     if (this.appTitle !== undefined) {

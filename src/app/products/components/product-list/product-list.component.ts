@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CartService } from 'src/app/cart/services/cart.service';
 import { Product } from '../../models/product';
 import { ProductService } from '../../services/product.service';
@@ -12,7 +12,7 @@ export class ProductListComponent {
   products: Product[] = [];
 
   constructor(private productService: ProductService,
-              private cartService: CartService) {
+    private cartService: CartService) {
     this.products = this.getProducts();
   }
 

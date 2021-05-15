@@ -21,4 +21,4 @@ export class ChangeBackgroundColorDirective {
   }
 }
 
-type Colors = "transparent" | "yellow";
+type Colors = 'transparent' | 'yellow';

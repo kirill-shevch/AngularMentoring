@@ -8,6 +8,6 @@ import { ProductListComponent } from './components/product-list/product-list.com
         CommonModule
     ],
     declarations: [ProductComponent, ProductListComponent],
-    exports: [ProductComponent, ProductListComponent]
+    exports: [ProductListComponent]
 })
 export class ProductsModule { }

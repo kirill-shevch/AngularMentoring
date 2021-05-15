@@ -1,1 +1,2 @@
-Product name: {{name}}, Product price: {{price}} <button [disabled]="!available" (click)="onBuy()">Buy</button>
+Product name: {{product.name}}, Product price: {{product.price}} <button [disabled]="!product.available"
+    (click)="onBuy()">Buy</button>

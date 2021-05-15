@@ -10,6 +10,6 @@ import { SharedModule } from '../shared/shared.module';
     SharedModule
   ],
   declarations: [CartListComponent, CartComponent],
-  exports: [CartListComponent, CartComponent]
+  exports: [CartListComponent]
 })
 export class CartModule { }
