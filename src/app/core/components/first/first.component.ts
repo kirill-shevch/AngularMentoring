@@ -1,7 +1,7 @@
 import { Inject } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { GeneratorService } from '../../services/generator.service';
-import { generatedString, GeneratorFactory } from '../../services/generatorFactory';
+import { generatedString, GeneratorFactory } from '../../services/generator.factory';
 
 @Component({
   selector: 'app-first',
@@ -13,11 +13,18 @@ import { generatedString, GeneratorFactory } from '../../services/generatorFacto
   ]
 })
 export class FirstComponent implements OnInit {
+  ids: number[] = [];
 
   generatedContent?: string;
-  constructor(@Inject(generatedString) private generatedString: string) { }
+
+  constructor(@Inject(generatedString) private generatedString: string,
+    private generatorService: GeneratorService) { }
 
   ngOnInit() {
     this.generatedContent = this.generatedString;
+  }
+
+  generateNewID() {
+    this.ids.push(this.generatorService.getNewId());
   }
 }

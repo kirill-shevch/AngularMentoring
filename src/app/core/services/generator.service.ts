@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { genID } from './gen-id.generator';
 
 @Injectable({
   providedIn: 'root'
@@ -12,5 +13,9 @@ export class GeneratorService {
       result += characters.charAt(Math.floor(Math.random() * characters.length));
     }
     return result;
+  }
+
+  getNewId(): number {
+    return genID().next().value;
   }
 }

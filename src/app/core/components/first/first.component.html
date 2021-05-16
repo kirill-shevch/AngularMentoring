@@ -1,1 +1,5 @@
 <p>My generated string: {{generatedContent}}</p>
+<li *ngFor="let id of ids; index as i;">
+  {{i}}
+</li>
+<button (click)="generateNewID()">+</button>
