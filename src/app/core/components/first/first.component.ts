@@ -1,7 +1,8 @@
 import { Inject } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { GeneratorService } from '../../services/generator.service';
-import { generatedString, GeneratorFactory } from '../../services/generator.factory';
+import { generatedString, GenerateString } from '../../services/generator.factory';
+import { localStorageRepository, LocalStorageService } from '../../services/local-storage.service';
 
 @Component({
   selector: 'app-first',
@@ -9,7 +10,8 @@ import { generatedString, GeneratorFactory } from '../../services/generator.fact
   styleUrls: ['./first.component.css'],
   providers: [
     GeneratorService,
-    { provide: generatedString, useFactory: GeneratorFactory(10), deps: [GeneratorService] }
+    { provide: generatedString, useFactory: GenerateString(10), deps: [GeneratorService] },
+    { provide: LocalStorageService, useValue: localStorageRepository }
   ]
 })
 export class FirstComponent implements OnInit {
@@ -17,14 +19,19 @@ export class FirstComponent implements OnInit {
 
   generatedContent?: string;
 
-  constructor(@Inject(generatedString) private generatedString: string,
-    private generatorService: GeneratorService) { }
+  constructor(@Inject(generatedString) private genString: string,
+    private generatorService: GeneratorService,
+    private localStorageService: LocalStorageService) { }
 
-  ngOnInit() {
-    this.generatedContent = this.generatedString;
+  ngOnInit(): void {
+    this.generatedContent = this.genString;
   }
 
-  generateNewID() {
-    this.ids.push(this.generatorService.getNewId());
+  generateNewID(): void {
+    let newId = this.generatorService.getNewId();
+    this.ids.push(newId);
+    this.localStorageService.removeItem("id");
+    this.localStorageService.setItem("id", newId.toString());
+    console.log(`Last id in local storage is ${this.localStorageService.getItem("id")}`);
   }
 }

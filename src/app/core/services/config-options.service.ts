@@ -10,7 +10,7 @@ export class ConfigOptionsService {
   private config: Config;
 
   constructor() {
-    this.config = { id: 0, login: "", email: "" };
+    this.config = { id: 0, login: '', email: '' };
   }
 
   setConfig(config: Partial<Config>): void {

@@ -6,9 +6,11 @@ import { genID } from './gen-id.generator';
 })
 export class GeneratorService {
 
+  private generator = genID();
+
   generate(length: number): string {
-    let result = "";
-    let characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let result = '';
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     for (let index = 0; index < length; index++) {
       result += characters.charAt(Math.floor(Math.random() * characters.length));
     }
@@ -16,6 +18,6 @@ export class GeneratorService {
   }
 
   getNewId(): number {
-    return genID().next().value;
+    return this.generator.next().value;
   }
 }

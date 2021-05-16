@@ -12,16 +12,16 @@ import { constantsService, ConstantsService } from './core/services/constants.se
 export class AppComponent implements AfterViewInit, OnInit {
 
   title = 'shop';
-  author?: String;
+  author?: string;
 
   @ViewChild('appTitle')
   appTitle!: ElementRef<HTMLHeadingElement>;
 
-  constructor(private constantsService: ConstantsService) {
+  constructor(private constService: ConstantsService) {
   }
 
   ngOnInit(): void {
-    this.author = this.constantsService.getAppAuthor();
+    this.author = this.constService.getAppAuthor();
   }
 
   ngAfterViewInit(): void {

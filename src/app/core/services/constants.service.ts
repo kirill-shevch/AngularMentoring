@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 export class ConstantsService {
 
   getAppAuthor(): string {
-    return "Kirill Shevchenko";
+    return 'Kirill Shevchenko';
   }
 }
 
