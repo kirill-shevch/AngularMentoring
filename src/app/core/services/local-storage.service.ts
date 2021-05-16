@@ -1,18 +1,18 @@
 export class LocalStorageService {
 
-    public setItem(key: string, value: string) {
+    public setItem(key: string, value: string): void {
         localStorage.setItem(key, value);
     }
 
-    public getItem(key: string) {
-        return localStorage.getItem(key)
+    public getItem(key: string): string | null {
+        return localStorage.getItem(key);
     }
 
-    public removeItem(key: string) {
+    public removeItem(key: string): void {
         localStorage.removeItem(key);
     }
 
-    public clear() {
+    public clear(): void {
         localStorage.clear();
     }
 }

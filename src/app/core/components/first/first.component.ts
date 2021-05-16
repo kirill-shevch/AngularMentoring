@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { GeneratorService } from '../../services/generator.service';
 import { generatedString, GenerateString } from '../../services/generator.factory';
 import { localStorageRepository, LocalStorageService } from '../../services/local-storage.service';
+import { Optional } from '@angular/core';
 
 @Component({
   selector: 'app-first',
@@ -20,18 +21,18 @@ export class FirstComponent implements OnInit {
   generatedContent?: string;
 
   constructor(@Inject(generatedString) private genString: string,
-    private generatorService: GeneratorService,
-    private localStorageService: LocalStorageService) { }
+              private generatorService: GeneratorService,
+              @Optional() private localStorageService: LocalStorageService) { }
 
   ngOnInit(): void {
     this.generatedContent = this.genString;
   }
 
   generateNewID(): void {
-    let newId = this.generatorService.getNewId();
+    const newId = this.generatorService.getNewId();
     this.ids.push(newId);
-    this.localStorageService.removeItem("id");
-    this.localStorageService.setItem("id", newId.toString());
-    console.log(`Last id in local storage is ${this.localStorageService.getItem("id")}`);
+    this.localStorageService.removeItem('id');
+    this.localStorageService.setItem('id', newId.toString());
+    console.log(`Last id in local storage is ${this.localStorageService.getItem('id')}`);
   }
 }
