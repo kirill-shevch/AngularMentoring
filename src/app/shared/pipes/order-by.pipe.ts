@@ -6,9 +6,9 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 export class OrderByPipe implements PipeTransform {
 
-  transform(value: any, parameters: string[], sortByAscending: boolean = true): any {
+  transform(value: any, parameters: string[] = [], sortByAscending: boolean = true): any {
     const valueArray = <Array<any>>value;
-    if (!value || !valueArray) {
+    if (!value || !valueArray || parameters.length === 0) {
       return value;
     }
     valueArray.sort((a, b) => this.compare(a, b, 0, parameters, sortByAscending));

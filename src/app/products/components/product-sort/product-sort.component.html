@@ -1,0 +1,7 @@
+<li *ngFor="let product of productOptions; index as i;">
+  {{product.name}} <input type="checkbox" [checked]="product.checked"
+    (change)="onProductOptionsChange(product.name, !product.checked)">
+</li>
+
+Sort by ascending: <input type="checkbox" [checked]="sortByAscending"
+  (change)="onSortByAscendingChange(!sortByAscending)">

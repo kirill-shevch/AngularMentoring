@@ -1,3 +1,4 @@
+<app-product-sort></app-product-sort>
 <p>product-list:</p>
 <li *ngFor="let product of products | async | orderBy: ['price', 'name'] : true; index as i;">
     {{i}}. <app-product [product]=product>
