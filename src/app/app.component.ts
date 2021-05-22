@@ -25,7 +25,7 @@ export class AppComponent implements AfterViewInit, OnInit {
   }
 
   ngAfterViewInit(): void {
-    if (this.appTitle !== undefined) {
+    if (this.appTitle) {
       this.appTitle.nativeElement.append('Shop application');
     }
   }

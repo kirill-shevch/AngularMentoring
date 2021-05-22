@@ -22,5 +22,4 @@ export class FrameDirective {
   }
 }
 
-type Borders = 'none' | 'solid';
 
