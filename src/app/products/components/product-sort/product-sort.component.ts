@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-product-sort',
@@ -11,17 +11,29 @@ export class ProductSortComponent {
 
   sortByAscending: boolean = true;
 
+  @Output()
+  sortByAscendingChanged: EventEmitter<boolean> = new EventEmitter();
+
+  @Output()
+  productOptionsChanged: EventEmitter<string[]> = new EventEmitter();
+
   constructor() {
   }
 
   onProductOptionsChange(key: string, value: boolean) {
     this.productOptions.find(x => x.name === key)!.checked = value;
-    console.log(this.productOptions);
+    const result: string[] = [];
+    this.productOptions.forEach(element => {
+      if (element.checked) {
+        result.push(element.name);
+      }
+    });
+    this.productOptionsChanged.emit(result);
   }
 
   onSortByAscendingChange(value: boolean): void {
     this.sortByAscending = value;
-    console.log(this.sortByAscending);
+    this.sortByAscendingChanged.emit(value);
   }
 
 }

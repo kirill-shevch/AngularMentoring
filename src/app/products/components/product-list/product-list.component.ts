@@ -12,6 +12,10 @@ import { ProductService } from '../../services/product.service';
 export class ProductListComponent {
   products: Observable<Product[]>;
 
+  sortByAscending: boolean = true;
+
+  sortByProperties: string[] = [];
+
   constructor(private productService: ProductService,
     private cartService: CartService) {
     this.products = this.getProducts();
@@ -20,6 +24,15 @@ export class ProductListComponent {
   buy({ name, price }: Product): void {
     console.log(`${name} bought! The price is ${price}`);
     this.cartService.addProduct(name, price);
+  }
+
+  sortByAscendingChanged(value: boolean) {
+    this.sortByAscending = value;
+    console.log("!!!");
+  }
+
+  sortByPropertiesChanged(properties: string[]) {
+    this.sortByProperties = properties;
   }
 
   private getProducts(): Observable<Product[]> {

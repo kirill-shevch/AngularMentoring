@@ -1,6 +1,7 @@
-<app-product-sort></app-product-sort>
+<app-product-sort (sortByAscendingChanged)="sortByAscendingChanged($event)"
+    (productOptionsChanged)="sortByPropertiesChanged($event)"></app-product-sort>
 <p>product-list:</p>
-<li *ngFor="let product of products | async | orderBy: ['price', 'name'] : true; index as i;">
+<li *ngFor="let product of products | async | orderBy: sortByProperties : sortByAscending; index as i;">
     {{i}}. <app-product [product]=product>
     </app-product>
 </li>
