@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ChangeBackgroundColorDirective } from './Directives/highlight.directive';
-import { FrameDirective } from './Directives/frame.directive';
+import { ChangeBackgroundColorDirective } from './directives/highlight.directive';
+import { FrameDirective } from './directives/frame.directive';
+import { OrderByPipe } from './pipes/order-by.pipe';
 
 @NgModule({
   imports: [
@@ -9,11 +10,13 @@ import { FrameDirective } from './Directives/frame.directive';
   ],
   declarations: [
     ChangeBackgroundColorDirective,
-    FrameDirective
+    FrameDirective,
+    OrderByPipe
   ],
   exports: [
     ChangeBackgroundColorDirective,
-    FrameDirective
+    FrameDirective,
+    OrderByPipe
   ]
 })
 export class SharedModule { }

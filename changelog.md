@@ -20,3 +20,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Core services and first-component in core odule to test them
 - New directive with inpout parameter 
+
+## [0.0.4] - 2021-05-22
+### Added
+- Add order-by pipe
+- Add sort-product component
+- Customize filters in sort component to use this values in order-by pipe

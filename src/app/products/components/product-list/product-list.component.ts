@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
 import { CartService } from 'src/app/cart/services/cart.service';
 import { Product } from '../../models/product';
 import { ProductService } from '../../services/product.service';
@@ -9,10 +10,14 @@ import { ProductService } from '../../services/product.service';
   styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent {
-  products: Product[] = [];
+  products: Observable<Product[]>;
+
+  sortByAscending: boolean = true;
+
+  sortByProperties: string[] = [];
 
   constructor(private productService: ProductService,
-              private cartService: CartService) {
+    private cartService: CartService) {
     this.products = this.getProducts();
   }
 
@@ -21,7 +26,16 @@ export class ProductListComponent {
     this.cartService.addProduct(name, price);
   }
 
-  private getProducts(): Product[] {
+  sortByAscendingChanged(value: boolean) {
+    this.sortByAscending = value;
+    console.log("!!!");
+  }
+
+  sortByPropertiesChanged(properties: string[]) {
+    this.sortByProperties = properties;
+  }
+
+  private getProducts(): Observable<Product[]> {
     return this.productService.getProducts();
   }
 }
