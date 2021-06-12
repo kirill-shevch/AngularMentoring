@@ -7,9 +7,9 @@ import { Component, EventEmitter, Output } from '@angular/core';
 })
 export class ProductSortComponent {
 
-  productOptions: SortElement[] = [{ name: "name", checked: false }, { name: "price", checked: false }];
+  productOptions: SortElement[] = [{ name: 'name', checked: false }, { name: 'price', checked: false }];
 
-  sortByAscending: boolean = true;
+  sortByAscending = true;
 
   @Output()
   sortByAscendingChanged: EventEmitter<boolean> = new EventEmitter();
@@ -20,8 +20,11 @@ export class ProductSortComponent {
   constructor() {
   }
 
-  onProductOptionsChange(key: string, value: boolean) {
-    this.productOptions.find(x => x.name === key)!.checked = value;
+  onProductOptionsChange(key: string, value: boolean): void {
+    const option = this.productOptions.find(x => x.name === key);
+    if (option) {
+      option.checked = value;
+    }
     const result: string[] = [];
     this.productOptions.forEach(element => {
       if (element.checked) {
@@ -41,4 +44,4 @@ export class ProductSortComponent {
 type SortElement = {
   name: string,
   checked: boolean
-}
+};

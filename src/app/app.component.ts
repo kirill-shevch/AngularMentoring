@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, DebugElement, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 import { constantsService, ConstantsService } from './core/services/constants.service';
 
 @Component({
@@ -28,5 +29,13 @@ export class AppComponent implements AfterViewInit, OnInit {
     if (this.appTitle) {
       this.appTitle.nativeElement.append('Shop application');
     }
+  }
+
+  onActivate($event: any, routerOutlet: RouterOutlet): void {
+    console.log('Activated Component', $event, routerOutlet);
+  }
+
+  onDeactivate($event: any, routerOutlet: RouterOutlet): void {
+    console.log('Deactivated Component', $event, routerOutlet);
   }
 }
