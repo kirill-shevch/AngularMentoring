@@ -1,12 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ProductLayoutComponent } from './products/components/product-layout/product-layout.component';
 import { ProductListComponent } from './products/components/product-list/product-list.component';
 
 const routes: Routes = [
-  {
-    path: 'product-list',
-    component: ProductListComponent
-  },
   {
     // The router will match this route if the URL requested
     // doesn't match any paths for routes defined in our configuration
