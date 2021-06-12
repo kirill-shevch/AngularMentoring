@@ -11,13 +11,13 @@ import { ProductService } from '../../services/product.service';
 })
 export class ProductLayoutComponent implements OnInit {
 
-  product: Product | undefined;
+  product!: Product | undefined;
   private sub: any;
 
   constructor(private route: ActivatedRoute,
-    private productService: ProductService,
-    private router: Router,
-    private cartService: CartService) { }
+              private productService: ProductService,
+              private router: Router,
+              private cartService: CartService) { }
 
   ngOnInit(): void {
     this.sub = this.route.params.subscribe(params => {
@@ -32,7 +32,9 @@ export class ProductLayoutComponent implements OnInit {
   }
 
   onBuy(): void {
-    this.cartService.addProduct(this.product!.name, this.product!.price);
+    if (this.product) {
+      this.cartService.addProduct(this.product.name, this.product.price);
+    }
     this.onBack();
   }
 }

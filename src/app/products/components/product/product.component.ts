@@ -14,7 +14,7 @@ export class ProductComponent {
   product!: Product;
 
   constructor(private cartService: CartService,
-    private router: Router) { }
+              private router: Router) { }
 
   onBuy(): void {
     console.log(`${this.product.name} bought! The price is ${this.product.price}`);

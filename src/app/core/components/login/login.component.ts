@@ -20,11 +20,11 @@ export class LoginComponent implements OnInit, OnDestroy {
     private router: Router) {
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.unsubscribe.complete();
   }
 
-  onLogin() {
+  onLogin(): void {
     this.message = 'Trying to log in ...';
     const observer = {
       next: () => {
@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         if (this.authService.isLoggedIn) {
           const redirect = this.authService.redirectUrl
             ? this.authService.redirectUrl
-            : '/admin';
+            : '/admin/products';
           this.router.navigate([redirect]);
         }
       },
@@ -45,12 +45,12 @@ export class LoginComponent implements OnInit, OnDestroy {
       .subscribe(observer);
   }
 
-  onLogout() {
+  onLogout(): void {
     this.authService.logout();
     this.setMessage();
   }
 
-  private setMessage() {
+  private setMessage(): void {
     this.message = 'Logged ' + (this.authService.isLoggedIn ? 'in' : 'out');
   }
 
