@@ -1,2 +1,2 @@
 Product name: {{product.name | uppercase}}, Product price: {{product.price | currency:'EUR'}} <button
-    [disabled]="!product.available" (click)="onBuy()">Buy</button>
+    [disabled]="!product.available" (click)="onBuy()">Buy</button><button (click)="onOpen()">Open</button>

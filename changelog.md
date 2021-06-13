@@ -26,3 +26,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add order-by pipe
 - Add sort-product component
 - Customize filters in sort component to use this values in order-by pipe
+
+## [0.0.5] - 2021-06-13
+### Added
+- Add routing modules
+- Add new component for product layout
+- Add new component to login into the application
+- Add new module admin module (empty, but guarded)
+- Add guard to check is user logged in

@@ -1,0 +1,7 @@
+<div>Product name: {{product!.name}}</div>
+<div>Product price: {{product!.price | currency:'EUR'}}</div>
+<div *ngIf="product!.available; else elseBlock">The product is availible</div>
+<ng-template #elseBlock>
+  <div>The product is NOT availible</div>
+</ng-template>
+<button (click)="onBack()">Back</button><button (click)="onBuy()">Buy</button>
