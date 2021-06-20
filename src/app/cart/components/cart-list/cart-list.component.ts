@@ -26,15 +26,15 @@ export class CartListComponent {
   }
 
   public addProduct(product: any): void {
-    this.cartService.addProduct(product.name, product.price);
+    this.cartService.addProduct(product.id, product.name, product.price);
   }
 
-  public decreaseProductCount(name: string): void {
-    this.cartService.decreaseProductCount(name);
+  public decreaseProductCount(id: number): void {
+    this.cartService.decreaseProductCount(id);
   }
 
-  public removeProduct(name: string): void {
-    this.cartService.removeProduct(name);
+  public removeProduct(id: number): void {
+    this.cartService.removeProduct(id);
   }
 
   constructor(private cartService: CartPromiseService) {

@@ -1,5 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Observable } from 'rxjs/internal/Observable';
 import { CartProduct } from '../models/cartProduct';
@@ -13,52 +13,49 @@ export class CartPromiseService {
 
   private productsInCart: BehaviorSubject<CartProduct[]> = new BehaviorSubject([] as CartProduct[]);
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    this.pullProducts().then(products => { this.productsInCart.next(products); })
+  }
 
   public getProducts(): Observable<CartProduct[]> {
     return this.productsInCart.asObservable();
   }
 
-  public addProduct(name: string, price: number): void {
-    this.getCartProduct(name)
-      .then(item => {
-        if (item) {
-          item.count++;
-          this.updateCartProduct(item);
-        }
-        else {
-          this.createCartProduct({ name, price, count: 1 });
-        }
-      });
+  public addProduct(id: number, name: string, price: number): void {
+    const product = this.productsInCart.value.find(({ id: cartProductId }) => cartProductId === id);
+    if (product) {
+      product.count++;
+      this.updateCartProduct(product);
+    }
+    else {
+      this.createCartProduct({ id, name, price, count: 1 });
+    }
     this.pullProducts().then(products => { this.productsInCart.next(products); });
   }
 
-  public decreaseProductCount(name: string): void {
-    this.getCartProduct(name)
-      .then(item => {
-        if (!item) {
-          console.log(`${name} is not in the cart!`);
-        }
-        else if (item.count <= 1) {
-          this.deleteCartProduct(item);
-        }
-        else {
-          item.count--;
-        }
-      });
+  public decreaseProductCount(id: number): void {
+    const product = this.productsInCart.value.find(({ id: cartProductId }) => cartProductId === id);
+    if (!product) {
+      console.log(`${id} is not in the cart!`);
+    }
+    else if (product.count <= 1) {
+      this.deleteCartProduct(product);
+    }
+    else {
+      product.count--;
+      this.updateCartProduct(product);
+    }
     this.pullProducts().then(products => { this.productsInCart.next(products); });
   }
 
-  public removeProduct(name: string): void {
-    this.getCartProduct(name)
-      .then(item => {
-        if (!item) {
-          console.log(`${name} is not in the cart!`);
-        }
-        else {
-          this.deleteCartProduct(item);
-        }
-      });
+  public removeProduct(id: number): void {
+    const product = this.productsInCart.value.find(({ id: cartProductId }) => cartProductId === id);
+    if (!product) {
+      console.log(`${name} is not in the cart!`);
+    }
+    else {
+      this.deleteCartProduct(product);
+    }
     this.pullProducts().then(products => { this.productsInCart.next(products); });
   }
 
@@ -87,8 +84,8 @@ export class CartPromiseService {
       .catch(this.handleError);
   }
 
-  getCartProduct(name: string): Promise<CartProduct> {
-    const url = `${this.productUrl}/${name}`;
+  getCartProduct(id: number): Promise<CartProduct> {
+    const url = `${this.productUrl}/${id}`;
     return this.http
       .get(url)
       .toPromise()
@@ -97,7 +94,7 @@ export class CartPromiseService {
   }
 
   updateCartProduct(cartProduct: CartProduct): Promise<CartProduct> {
-    const url = `${this.productUrl}/${cartProduct.name}`;
+    const url = `${this.productUrl}/${cartProduct.id}`;
     const body = JSON.stringify(cartProduct);
     const options = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -123,7 +120,7 @@ export class CartPromiseService {
   }
 
   deleteCartProduct(cartProduct: CartProduct): Promise<CartProduct> {
-    const url = `${this.productUrl}/${cartProduct.name}`;
+    const url = `${this.productUrl}/${cartProduct.id}`;
     return (
       this.http
         .delete(url)

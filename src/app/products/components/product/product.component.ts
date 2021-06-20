@@ -18,7 +18,7 @@ export class ProductComponent {
 
   onBuy(): void {
     console.log(`${this.product.name} bought! The price is ${this.product.price}`);
-    this.cartService.addProduct(this.product.name, this.product.price);
+    this.cartService.addProduct(this.product.id, this.product.name, this.product.price);
   }
 
   onOpen(): void {

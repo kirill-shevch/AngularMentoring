@@ -22,9 +22,9 @@ export class ProductListComponent {
     this.products = this.getProducts();
   }
 
-  buy({ name, price }: Product): void {
+  buy({ id, name, price }: Product): void {
     console.log(`${name} bought! The price is ${price}`);
-    this.cartService.addProduct(name, price);
+    this.cartService.addProduct(id, name, price);
   }
 
   sortByAscendingChanged(value: boolean): void {

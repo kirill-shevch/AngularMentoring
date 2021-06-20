@@ -33,7 +33,7 @@ export class ProductLayoutComponent implements OnInit {
 
   onBuy(): void {
     if (this.product) {
-      this.cartService.addProduct(this.product.name, this.product.price);
+      this.cartService.addProduct(this.product.id, this.product.name, this.product.price);
     }
     this.onBack();
   }

@@ -9,26 +9,26 @@ import { CartProduct } from '../../models/cartProduct';
 export class CartComponent {
 
   @Input()
-  cartProduct: CartProduct = { name: 'default', price: 0, count: 1 };
+  cartProduct: CartProduct = { id: 0, name: 'default', price: 0, count: 1 };
 
   @Output()
   add = new EventEmitter<any>();
 
   @Output()
-  decreaseCount = new EventEmitter<string>();
+  decreaseCount = new EventEmitter<number>();
 
   @Output()
-  remove = new EventEmitter<string>();
+  remove = new EventEmitter<number>();
 
-  public addProduct(name: string, price: number): void {
-    this.add.emit({ name, price });
+  public addProduct(id: number, name: string, price: number): void {
+    this.add.emit({ id, name, price });
   }
 
-  public decreaseProductCount(name: string): void {
-    this.decreaseCount.emit(name);
+  public decreaseProductCount(id: number): void {
+    this.decreaseCount.emit(id);
   }
 
-  public removeProduct(name: string): void {
-    this.remove.emit(name);
+  public removeProduct(id: number): void {
+    this.remove.emit(id);
   }
 }
