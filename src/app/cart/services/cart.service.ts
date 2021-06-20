@@ -17,13 +17,13 @@ export class CartService {
     return this.productsInCart.asObservable();
   }
 
-  public addProduct(name: string, price: number): void {
+  public addProduct(id: number, name: string, price: number): void {
     const product = this.getProductByName(name);
     if (product) {
       product.count++;
     }
     else {
-      const nextStateProductCart = [...this.productsInCartState, { name, price, count: 1 }];
+      const nextStateProductCart = [...this.productsInCartState, { id, name, price, count: 1 }];
       this.productsInCart.next(nextStateProductCart);
     }
   }

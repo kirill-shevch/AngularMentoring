@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { of } from 'rxjs/internal/observable/of';
 import { CartProduct } from '../../models/cartProduct';
-import { CartService } from '../../services/cart.service';
+import { CartPromiseService } from '../../services/cart-promise.service';
 
 @Component({
   selector: 'app-cart-list',
@@ -26,18 +26,18 @@ export class CartListComponent {
   }
 
   public addProduct(product: any): void {
-    this.cartService.addProduct(product.name, product.price);
+    this.cartService.addProduct(product.id, product.name, product.price);
   }
 
-  public decreaseProductCount(name: string): void {
-    this.cartService.decreaseProductCount(name);
+  public decreaseProductCount(id: number): void {
+    this.cartService.decreaseProductCount(id);
   }
 
-  public removeProduct(name: string): void {
-    this.cartService.removeProduct(name);
+  public removeProduct(id: number): void {
+    this.cartService.removeProduct(id);
   }
 
-  constructor(private cartService: CartService) {
+  constructor(private cartService: CartPromiseService) {
     this.productsInCart = this.cartService.getProducts();
   }
 }

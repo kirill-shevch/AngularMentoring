@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { CartService } from '../../../cart/services/cart.service';
+import { CartPromiseService } from 'src/app/cart/services/cart-promise.service';
 import { Product } from '../../models/product';
 
 @Component({
@@ -13,12 +13,12 @@ export class ProductComponent {
   @Input()
   product!: Product;
 
-  constructor(private cartService: CartService,
+  constructor(private cartService: CartPromiseService,
               private router: Router) { }
 
   onBuy(): void {
     console.log(`${this.product.name} bought! The price is ${this.product.price}`);
-    this.cartService.addProduct(this.product.name, this.product.price);
+    this.cartService.addProduct(this.product.id, this.product.name, this.product.price);
   }
 
   onOpen(): void {
