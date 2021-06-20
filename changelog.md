@@ -34,3 +34,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add new component to login into the application
 - Add new module admin module (empty, but guarded)
 - Add guard to check is user logged in
+
+## [0.0.6] - 2021-06-20
+### Added
+- Add local json database
+- Add product-promise service to work with new local database
+- Add cart-promise service to work with new local database
+- Replace old services with new promise services
+- Add interceptor to measure request time for cart service
