@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { of } from 'rxjs/internal/observable/of';
 import { CartProduct } from '../../models/cartProduct';
-import { CartService } from '../../services/cart.service';
+import { CartPromiseService } from '../../services/cart-promise.service';
 
 @Component({
   selector: 'app-cart-list',
@@ -13,15 +13,15 @@ export class CartListComponent {
 
   public productsInCart: Observable<CartProduct[]> = of([] as CartProduct[]);
 
-  public get isEmptyProduts(): boolean {
+  public get isEmptyProduts(): Promise<boolean> {
     return this.cartService.isEmptyProduts();
   }
 
-  public getCartSum(): number {
+  public getCartSum(): Promise<number> {
     return this.cartService.getCartSum();
   }
 
-  public getCartCount(): number {
+  public getCartCount(): Promise<number> {
     return this.cartService.getCartCount();
   }
 
@@ -37,7 +37,7 @@ export class CartListComponent {
     this.cartService.removeProduct(name);
   }
 
-  constructor(private cartService: CartService) {
+  constructor(private cartService: CartPromiseService) {
     this.productsInCart = this.cartService.getProducts();
   }
 }

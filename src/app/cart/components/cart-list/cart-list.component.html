@@ -1,10 +1,10 @@
-<ng-template *ngIf="isEmptyProduts; then thenBlock else elseBlock"></ng-template>
+<ng-template *ngIf="isEmptyProduts|async; then thenBlock else elseBlock"></ng-template>
 <ng-template #thenBlock>
     <p>Your cart:</p>
     <li *ngFor="let product of productsInCart|async; index as i;">
         {{i}}. <app-cart [cartProduct]=product (add)=addProduct($event) (decreaseCount)=decreaseProductCount($event)
             (remove)=removeProduct($event)></app-cart>
     </li>
-    Products count: {{getCartCount()}}; Your cart price is {{getCartSum()}}
+    Products count: {{getCartCount()|async}}; Your cart price is {{getCartSum()|async}}
 </ng-template>
 <ng-template #elseBlock>Your cart is empty!</ng-template>

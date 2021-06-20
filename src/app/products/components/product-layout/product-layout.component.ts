@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CartService } from 'src/app/cart/services/cart.service';
+import { CartPromiseService } from 'src/app/cart/services/cart-promise.service';
 import { Product } from '../../models/product';
 import { ProductPromiseService } from '../../services/product-promise.service';
 
@@ -15,9 +15,9 @@ export class ProductLayoutComponent implements OnInit {
   private sub: any;
 
   constructor(private route: ActivatedRoute,
-    private productService: ProductPromiseService,
-    private router: Router,
-    private cartService: CartService) { }
+              private productService: ProductPromiseService,
+              private router: Router,
+              private cartService: CartPromiseService) { }
 
   ngOnInit(): void {
     this.sub = this.route.params.subscribe(params => {

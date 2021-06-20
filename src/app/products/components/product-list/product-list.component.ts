@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
-import { CartService } from 'src/app/cart/services/cart.service';
+import { CartPromiseService } from 'src/app/cart/services/cart-promise.service';
 import { Product } from '../../models/product';
 import { ProductPromiseService } from '../../services/product-promise.service';
 
@@ -18,7 +18,7 @@ export class ProductListComponent {
 
   constructor(
     private productService: ProductPromiseService,
-    private cartService: CartService) {
+    private cartService: CartPromiseService) {
     this.products = this.getProducts();
   }
 
