@@ -13,15 +13,15 @@ export class CartListComponent {
 
   public productsInCart: Observable<CartProduct[]> = of([] as CartProduct[]);
 
-  public get isEmptyProduts(): Promise<boolean> {
+  public get isEmptyProduts(): boolean {
     return this.cartService.isEmptyProduts();
   }
 
-  public getCartSum(): Promise<number> {
+  public getCartSum(): number {
     return this.cartService.getCartSum();
   }
 
-  public getCartCount(): Promise<number> {
+  public getCartCount(): number {
     return this.cartService.getCartCount();
   }
 

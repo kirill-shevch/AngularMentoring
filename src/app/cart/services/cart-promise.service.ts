@@ -62,16 +62,16 @@ export class CartPromiseService {
     this.pullProducts().then(products => { this.productsInCart.next(products); });
   }
 
-  public isEmptyProduts(): Promise<boolean> {
-    return this.pullProducts().then(array => array.length > 0);
+  public isEmptyProduts(): boolean {
+    return this.productsInCart.getValue().length > 0;
   }
 
-  public getCartSum(): Promise<number> {
-    return this.pullProducts().then(array => array.reduce((sum, { price, count }) => sum + price * count, 0));
+  public getCartSum(): number {
+    return this.productsInCart.getValue().reduce((sum, { price, count }) => sum + price * count, 0);
   }
 
-  public getCartCount(): Promise<number> {
-    return this.pullProducts().then(array => array.reduce((sum, { count }) => sum + count, 0));
+  public getCartCount(): number {
+    return this.productsInCart.getValue().reduce((sum, { count }) => sum + count, 0);
   }
 
   private handleError(error: any): Promise<any> {
