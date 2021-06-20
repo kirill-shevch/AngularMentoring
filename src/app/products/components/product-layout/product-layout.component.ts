@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CartService } from 'src/app/cart/services/cart.service';
 import { Product } from '../../models/product';
-import { ProductService } from '../../services/product.service';
+import { ProductPromiseService } from '../../services/product-promise.service';
 
 @Component({
   selector: 'app-product-layout',
@@ -15,14 +15,14 @@ export class ProductLayoutComponent implements OnInit {
   private sub: any;
 
   constructor(private route: ActivatedRoute,
-              private productService: ProductService,
-              private router: Router,
-              private cartService: CartService) { }
+    private productService: ProductPromiseService,
+    private router: Router,
+    private cartService: CartService) { }
 
   ngOnInit(): void {
     this.sub = this.route.params.subscribe(params => {
       const products = this.productService.getProducts();
-      products.subscribe((items: Product[]) => this.product = items.find(p => p.name === params.productName));
+      products.then((items: Product[]) => this.product = items.find(p => p.name === params.productName));
     });
   }
 

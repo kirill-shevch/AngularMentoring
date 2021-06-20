@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CartService } from 'src/app/cart/services/cart.service';
 import { Product } from '../../models/product';
-import { ProductService } from '../../services/product.service';
+import { ProductPromiseService } from '../../services/product-promise.service';
 
 @Component({
   selector: 'app-product-list',
@@ -10,14 +10,14 @@ import { ProductService } from '../../services/product.service';
   styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent {
-  products: Observable<Product[]>;
+  products: Promise<Product[]>;
 
   sortByAscending = true;
 
   sortByProperties: string[] = [];
 
   constructor(
-    private productService: ProductService,
+    private productService: ProductPromiseService,
     private cartService: CartService) {
     this.products = this.getProducts();
   }
@@ -36,7 +36,7 @@ export class ProductListComponent {
     this.sortByProperties = properties;
   }
 
-  private getProducts(): Observable<Product[]> {
+  private getProducts(): Promise<Product[]> {
     return this.productService.getProducts();
   }
 }
