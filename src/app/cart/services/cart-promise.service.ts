@@ -14,7 +14,7 @@ export class CartPromiseService {
   private productsInCart: BehaviorSubject<CartProduct[]> = new BehaviorSubject([] as CartProduct[]);
 
   constructor(private http: HttpClient) {
-    this.pullProducts().then(products => { this.productsInCart.next(products); })
+    this.pullProducts().then(products => { this.productsInCart.next(products); });
   }
 
   public getProducts(): Observable<CartProduct[]> {
@@ -51,6 +51,7 @@ export class CartPromiseService {
   public removeProduct(id: number): void {
     const product = this.productsInCart.value.find(({ id: cartProductId }) => cartProductId === id);
     if (!product) {
+      // что такое "name"?
       console.log(`${name} is not in the cart!`);
     }
     else {
