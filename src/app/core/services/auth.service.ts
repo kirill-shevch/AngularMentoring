@@ -7,7 +7,7 @@ import { delay, tap } from 'rxjs/operators';
 })
 
 export class AuthService {
-  isLoggedIn = false;
+  isLoggedIn = false; // без использования роли?
   redirectUrl: string | undefined;
 
   login(): Observable<boolean> {
