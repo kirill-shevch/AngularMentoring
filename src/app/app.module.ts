@@ -10,6 +10,9 @@ import { ProductsModule } from './products/products.module';
 import { SharedModule } from './shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
 import { httpInterceptorProviders } from './core/interceptors';
+import { ShopModule } from './shop/shop.module';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
   declarations: [
@@ -23,6 +26,9 @@ import { httpInterceptorProviders } from './core/interceptors';
     SharedModule,
     AdminModule,
     HttpClientModule,
+    StoreModule.forRoot({}),
+    EffectsModule.forRoot(),
+    ShopModule,
     AppRoutingModule
   ],
   providers: [httpInterceptorProviders],
