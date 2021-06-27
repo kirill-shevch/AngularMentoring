@@ -14,3 +14,12 @@ export const createShopActionFailure = createAction(
   '[Actions] Y createShopAction Failure',
   props<{ error: any }>()
 );
+
+export const getShopsAction = createAction(
+  '[Actions] Y getShopsAction'
+);
+
+export const getShopsActionSuccess = createAction(
+  '[Actions] Y getShopsAction Success',
+  props<{ shops: Shop[] }>()
+);

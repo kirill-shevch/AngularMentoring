@@ -21,4 +21,10 @@ export class ShopService {
     return this.http
       .post<Shop>(url, body, options);
   }
+
+  getShops(): Observable<Shop[]> {
+    const url = this.shopUrl;
+    return this.http
+      .get<Shop[]>(url);
+  }
 }

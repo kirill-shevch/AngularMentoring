@@ -1,7 +1,5 @@
 <button (click)="create()">Create</button>
-<ng-container *ngIf="shops | async as shopsList">
-  <p>Shop list:</p>
-  <li *ngFor="let shop of shopsList; index as i;">
-    {{i}}. <app-shop [shop]=shop></app-shop>
-  </li>
-</ng-container>
+<p>Shop list:</p>
+<li *ngFor="let shop of (shopsState | async)!.data; index as i;">
+  {{i}}. <app-shop [shop]=shop></app-shop>
+</li>

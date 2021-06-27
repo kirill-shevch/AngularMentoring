@@ -26,5 +26,31 @@
     }
   ],
   "cart": [],
-  "shops": []
+  "shops": [
+    {
+      "id": 4809,
+      "name": "17v4n6",
+      "adress": "2becnf"
+    },
+    {
+      "id": 5313,
+      "name": "zdotov",
+      "adress": "mybul"
+    },
+    {
+      "id": 778,
+      "name": "sl7c4",
+      "adress": "f1js6xm"
+    },
+    {
+      "id": 6773,
+      "name": "nee5xp",
+      "adress": "coqlb"
+    },
+    {
+      "id": 4436,
+      "name": "ylq4x7",
+      "adress": "77r0d"
+    }
+  ]
 }

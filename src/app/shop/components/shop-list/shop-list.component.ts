@@ -1,19 +1,25 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Shop } from '../../models/shop';
 import { Store } from '@ngrx/store';
-import { createShopAction } from '../../actions/shop.actions';
+import { createShopAction, getShopsAction } from '../../actions/shop.actions';
+import { ShopsState } from '../../states/shop-state';
 
 @Component({
   selector: 'app-shop-list',
   templateUrl: './shop-list.component.html',
   styleUrls: ['./shop-list.component.css']
 })
-export class ShopListComponent {
+export class ShopListComponent implements OnInit {
 
-  shops!: Observable<Shop[]>;
+  shopsState!: Observable<ShopsState>;
 
   constructor(private store: Store) {
+  }
+
+  ngOnInit(): void {
+    console.log('We have a store! ', this.store);
+    this.shopsState = this.store.select((state: any) => state.shops);
+    this.store.dispatch(getShopsAction());
   }
 
   create(): void {

@@ -11,7 +11,7 @@ import { ShopEffects } from './services/shop.effects';
 @NgModule({
   imports: [
     CommonModule,
-    StoreModule.forFeature('someAction', shopReducers),
+    StoreModule.forFeature('shops', shopReducers),
     EffectsModule.forFeature([ShopEffects]),
   ],
   declarations: [ShopComponent, ShopListComponent],

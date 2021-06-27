@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { switchMap } from 'rxjs/operators';
-import { createShopAction, createShopActionSuccess } from '../actions/shop.actions';
+import { createShopAction, createShopActionSuccess, getShopsAction, getShopsActionSuccess } from '../actions/shop.actions';
 import { Shop } from '../models/shop';
 import { ShopService } from './shop.service';
 
@@ -11,7 +11,7 @@ import { ShopService } from './shop.service';
 export class ShopEffects {
 
     constructor(private shopService: ShopService,
-                private actions: Actions) {
+        private actions: Actions) {
     }
 
     createShop = createEffect(
@@ -21,6 +21,13 @@ export class ShopEffects {
             switchMap(async (shop) => createShopActionSuccess({ payload: shop })))
     );
 
+    getShops = createEffect(
+        () => this.actions.pipe(
+            ofType(getShopsAction),
+            switchMap(() => this.shopService.getShops()),
+            switchMap(async (shops) => getShopsActionSuccess({ shops }))
+        )
+    );
 
     private generateRandomShop(): Shop {
         return {

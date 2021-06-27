@@ -1,5 +1,9 @@
-import { Shop } from "../models/shop";
+import { Shop } from '../models/shop';
 
-export interface ShopState {
+export interface ShopsState {
     data: ReadonlyArray<Shop>;
 }
+
+export const initialShopsState: ShopsState = {
+    data: []
+};
