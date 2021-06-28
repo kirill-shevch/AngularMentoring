@@ -1,5 +1,5 @@
 <button (click)="create()">Create</button>
 <p>Shop list:</p>
 <li *ngFor="let shop of (shopsState | async)!.data; index as i;">
-  {{i}}. <app-shop [shop]=shop></app-shop>
+  {{i}}: {{shop.name}}<button (click)="open(shop.id)">Open</button>
 </li>

@@ -28,29 +28,24 @@
   "cart": [],
   "shops": [
     {
-      "id": 4809,
-      "name": "17v4n6",
-      "adress": "2becnf"
+      "id": 1,
+      "name": "shop 1",
+      "adress": "Some random adress 1"
     },
     {
-      "id": 5313,
-      "name": "zdotov",
-      "adress": "mybul"
+      "id": 2,
+      "name": "shop 2",
+      "adress": "Some random adress 2"
     },
     {
-      "id": 778,
-      "name": "sl7c4",
-      "adress": "f1js6xm"
+      "id": 3,
+      "name": "shop 3",
+      "adress": "Some random adress 3"
     },
     {
-      "id": 6773,
-      "name": "nee5xp",
-      "adress": "coqlb"
-    },
-    {
-      "id": 4436,
-      "name": "ylq4x7",
-      "adress": "77r0d"
+      "id": 4,
+      "name": "shop 4",
+      "adress": "Some random adress 4"
     }
   ]
 }

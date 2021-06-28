@@ -1,1 +1,1 @@
-Shop name: {{shop.name}}, Shop adress: {{shop.adress}}
+Shop name: {{(shopsState | async)!.selectedShop!.name}}, Shop adress: {{(shopsState | async)!.selectedShop!.adress}}

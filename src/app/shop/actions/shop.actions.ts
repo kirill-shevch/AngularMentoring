@@ -23,3 +23,13 @@ export const getShopsActionSuccess = createAction(
   '[Actions] Y getShopsAction Success',
   props<{ shops: Shop[] }>()
 );
+
+export const getShopAction = createAction(
+  '[Actions] Y getShopAction',
+  props<{ id: number }>()
+);
+
+export const getShopActionSuccess = createAction(
+  '[Actions] Y getShopAction Success',
+  props<{ shop: Shop }>()
+);

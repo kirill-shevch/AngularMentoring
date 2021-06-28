@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { createShopAction, createShopActionSuccess, getShopsAction, getShopsActionSuccess } from '../actions/shop.actions';
+import { createShopAction, createShopActionSuccess, getShopAction, getShopActionSuccess, getShopsAction, getShopsActionSuccess } from '../actions/shop.actions';
 import { initialShopsState } from '../states/shop-state';
 
 export const shopReducers = createReducer(initialShopsState,
@@ -17,5 +17,17 @@ export const shopReducers = createReducer(initialShopsState,
         console.log(state);
         const data = [...state.data, { ...payload }];
         return { ...state, data };
+    }),
+    on(getShopAction, state => {
+        console.log('getShopAction called!')
+        return { ...state };
+    }),
+    on(getShopActionSuccess, (state, { shop }) => {
+        console.log('getShopActionSuccess called!')
+        const selectedShop = { ...shop }
+        return {
+            ...state,
+            selectedShop
+        }
     })
 );
