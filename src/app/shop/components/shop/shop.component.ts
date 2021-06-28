@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { getShopAction } from '../../actions/shop.actions';
+import { selectShopsState } from '../../selectors/shop.selectors';
 import { ShopsState } from '../../states/shop-state';
 
 @Component({
@@ -22,7 +23,7 @@ export class ShopComponent implements OnInit {
   ngOnInit(): void {
     console.log('we are in shop component!');
     console.log('We have a store! ', this.store);
-    this.shopsState = this.store.select((state: any) => state.shops);
+    this.shopsState = this.store.select(selectShopsState);
     this.route.params.subscribe(params => this.store.dispatch(getShopAction({ id: +params.id })));
   }
 
