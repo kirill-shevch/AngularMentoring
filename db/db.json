@@ -25,5 +25,27 @@
       "available": false
     }
   ],
-  "cart": []
+  "cart": [],
+  "shops": [
+    {
+      "id": 1,
+      "name": "shop 1",
+      "adress": "Some random adress 1"
+    },
+    {
+      "id": 2,
+      "name": "shop 2",
+      "adress": "Some random adress 2"
+    },
+    {
+      "id": 3,
+      "name": "shop 3",
+      "adress": "Some random adress 3"
+    },
+    {
+      "id": 4,
+      "name": "shop 4",
+      "adress": "Some random adress 4"
+    }
+  ]
 }
