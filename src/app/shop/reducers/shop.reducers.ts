@@ -14,20 +14,21 @@ export const shopReducers = createReducer(initialShopsState,
         return { ...state };
     }),
     on(createShopActionSuccess, (state, { payload }) => {
-        console.log(state);
+        console.log('createShopActionSuccess called!');
         const data = [...state.data, { ...payload }];
-        return { ...state, data };
+        const selectedShop = { ...payload };
+        return { ...state, data, selectedShop };
     }),
     on(getShopAction, state => {
-        console.log('getShopAction called!')
+        console.log('getShopAction called!');
         return { ...state };
     }),
     on(getShopActionSuccess, (state, { shop }) => {
-        console.log('getShopActionSuccess called!')
-        const selectedShop = { ...shop }
+        console.log('getShopActionSuccess called!');
+        const selectedShop = { ...shop };
         return {
             ...state,
             selectedShop
-        }
+        };
     })
 );

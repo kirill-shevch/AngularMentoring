@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { pluck, switchMap } from 'rxjs/operators';
+import { Action } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { map, pluck, switchMap } from 'rxjs/operators';
+import { go } from '../actions/router.actions';
 import { createShopAction, createShopActionSuccess, getShopAction, getShopActionSuccess, getShopsAction, getShopsActionSuccess } from '../actions/shop.actions';
 import { Shop } from '../models/shop';
 import { ShopService } from './shop.service';
@@ -19,6 +22,13 @@ export class ShopEffects {
             ofType(createShopAction),
             switchMap(() => this.shopService.createShop(this.generateRandomShop())),
             switchMap(async (shop) => createShopActionSuccess({ payload: shop })))
+    );
+
+    createShopSuccess = createEffect(
+        () => this.actions.pipe(
+            ofType(createShopActionSuccess),
+            map(action => { return go({ path: [`shop`], queryParams: [1] }) })
+        )
     );
 
     getShops = createEffect(

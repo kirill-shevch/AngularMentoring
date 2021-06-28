@@ -13,6 +13,9 @@ import { httpInterceptorProviders } from './core/interceptors';
 import { ShopModule } from './shop/shop.module';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
+import { routerReducers } from './shop/reducers/router.reducer';
+import { RouterState, StoreRouterConnectingModule } from '@ngrx/router-store';
+import { CustomSerializer } from './shop/services/router.custom-serializer';
 
 @NgModule({
   declarations: [
@@ -26,7 +29,21 @@ import { EffectsModule } from '@ngrx/effects';
     SharedModule,
     AdminModule,
     HttpClientModule,
-    StoreModule.forRoot({}),
+    StoreModule.forRoot(routerReducers, {
+      runtimeChecks: {
+        strictStateImmutability: true, // default value is true
+        strictActionImmutability: true, // default value is true
+        strictStateSerializability: true, // default value is false
+        strictActionSerializability: false, // default value is false
+        strictActionWithinNgZone: true, // default value is false
+        strictActionTypeUniqueness: true // default value is false
+      }
+    }),
+    StoreRouterConnectingModule.forRoot({
+      stateKey: 'router',
+      routerState: RouterState.Minimal,
+      serializer: CustomSerializer // has a priority over routerState
+    }),
     EffectsModule.forRoot(),
     ShopModule,
     AppRoutingModule
