@@ -42,3 +42,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add cart-promise service to work with new local database
 - Replace old services with new promise services
 - Add interceptor to measure request time for cart service
+
+## [0.0.7] - 2021-06-28
+### Added
+- Add new module - Shops
+- Add new components - for single shop and for shop list
+- Add actions, reducers and effects for new entity and for router
+- Add selectors for shops and routing
