@@ -1,7 +1,7 @@
-import { createFeatureSelector, createSelector } from "@ngrx/store";
-import { Shop } from "../models/shop";
-import { ShopsState } from "../states/shop-state";
-import { selectRouterState } from "./router.selectors";
+import { createFeatureSelector, createSelector } from '@ngrx/store';
+import { Shop } from '../models/shop';
+import { ShopsState } from '../states/shop-state';
+import { selectRouterState } from './router.selectors';
 
 export const selectShopsState = createFeatureSelector<ShopsState>('shops');
 
@@ -13,11 +13,19 @@ export const selectSelectedShopByUrl = createSelector(
     selectRouterState,
     (shops, router): Shop => {
         const id = router.state.params.id;
+
+        // Этот код у меня выдает несколько ошибок
         if (id && Array.isArray(shops)) {
-            const shop = shops.find(shop => shop.id === +id);
-            return shop!;
+            const shop = shops.find(sh => sh.id === +id); // shadowed variable
+            // return shop!; // ! Forbidden non null assertion
+            if (!shop) {
+              return { id: 0, name: '', adress: '' } as Shop;
+            }
+            else {
+              return shop;
+            }
         } else {
-            return { id: 0, name: "", adress: "" };
+            return { id: 0, name: '', adress: '' } as Shop;
         }
     }
 );

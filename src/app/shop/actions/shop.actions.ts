@@ -2,6 +2,7 @@ import { createAction, props } from '@ngrx/store';
 import { Shop } from '../models/shop';
 
 export const createShopAction = createAction(
+  // Как-то не очень выглядит source [Actions]
   '[Actions] Y createShopAction'
 );
 
