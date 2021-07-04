@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { OrderModel } from '../../models/order.model';
 
 @Component({
   selector: 'app-process-order',
@@ -7,5 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProcessOrderComponent {
 
+  order: OrderModel = new OrderModel();
+
   constructor() { }
+
+  onSave(signupForm: NgForm) {
+    // Form model
+    console.log(signupForm.form);
+    // Form value
+    console.log(`Saved: ${JSON.stringify(signupForm.value)}`);
+  }
 }
