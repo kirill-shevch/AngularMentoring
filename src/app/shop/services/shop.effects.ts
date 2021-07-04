@@ -14,7 +14,7 @@ import { ShopService } from './shop.service';
 export class ShopEffects {
 
     constructor(private shopService: ShopService,
-        private actions: Actions) {
+                private actions: Actions) {
     }
 
     createShop = createEffect(
@@ -27,7 +27,7 @@ export class ShopEffects {
     createShopSuccess = createEffect(
         () => this.actions.pipe(
             ofType(createShopActionSuccess),
-            map(action => { return go({ path: [`shop`], queryParams: [1] }) })
+            map(action => go({ path: [`shop`], queryParams: [1] }))
         )
     );
 

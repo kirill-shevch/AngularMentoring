@@ -16,8 +16,8 @@ export class ShopComponent implements OnInit {
   shopsState!: Observable<ShopsState>;
 
   constructor(private store: Store,
-    private router: Router,
-    private route: ActivatedRoute) {
+              private router: Router,
+              private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
