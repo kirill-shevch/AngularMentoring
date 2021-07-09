@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { OrderModel } from '../../models/order.model';
+import { CustomValidators } from '../../validators/custom.validators';
 
 @Component({
   selector: 'app-process-order',
@@ -51,7 +52,7 @@ export class ProcessOrderComponent implements OnInit {
 
   private buildForm() {
     this.orderForm = this.fb.group({
-      firstName: ['John', [Validators.required, Validators.minLength(3)]],
+      firstName: ['John', [Validators.required, Validators.minLength(3), CustomValidators.capitalLetter]],
       lastName: 'Doe',
       email: [
         'johndoe@mail.com',
