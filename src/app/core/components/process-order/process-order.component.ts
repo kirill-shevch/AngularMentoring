@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { OrderModel } from '../../models/order.model';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CustomValidators } from '../../validators/custom.validators';
 
 @Component({
@@ -21,27 +20,45 @@ export class ProcessOrderComponent implements OnInit {
   orderForm: FormGroup | undefined;
 
   get firstName(): AbstractControl | null {
-    return this.orderForm!.get('firstName');
+    if (!this.orderForm) {
+      return null;
+    }
+    return this.orderForm.get('firstName');
   }
 
   get lastName(): AbstractControl | null {
-    return this.orderForm!.get('lastName');
+    if (!this.orderForm) {
+      return null;
+    }
+    return this.orderForm.get('lastName');
   }
 
   get email(): AbstractControl | null {
-    return this.orderForm!.get('email');
+    if (!this.orderForm) {
+      return null;
+    }
+    return this.orderForm.get('email');
   }
 
   get phoneNumber(): AbstractControl | null {
-    return this.orderForm!.get('phoneNumber');
+    if (!this.orderForm) {
+      return null;
+    }
+    return this.orderForm.get('phoneNumber');
   }
 
   get pickup(): AbstractControl | null {
-    return this.orderForm!.get('pickup');
+    if (!this.orderForm) {
+      return null;
+    }
+    return this.orderForm.get('pickup');
   }
 
   get address(): AbstractControl | null {
-    return this.orderForm!.get('address');
+    if (!this.orderForm) {
+      return null;
+    }
+    return this.orderForm.get('address');
   }
 
   constructor(private fb: FormBuilder) { }
@@ -50,7 +67,7 @@ export class ProcessOrderComponent implements OnInit {
     this.buildForm();
   }
 
-  private buildForm() {
+  private buildForm(): void {
     this.orderForm = this.fb.group({
       firstName: ['John', [Validators.required, Validators.minLength(3), CustomValidators.capitalLetter]],
       lastName: 'Doe',
@@ -62,7 +79,7 @@ export class ProcessOrderComponent implements OnInit {
         '+12223334455',
         [Validators.required, Validators.pattern('[+][0-9]+')]
       ],
-      pickup: false,
+      pickup: true,
       address: ''
     });
   }

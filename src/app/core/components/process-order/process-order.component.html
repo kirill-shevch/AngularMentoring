@@ -72,10 +72,10 @@
       </div>
 
       <div class="form-group">
-        <label class="col-md-2 control-label" for="addressId">Address</label>
+        <label class="col-md-2 control-label" for="addressId" [hidden]="!pickup!.value">Address</label>
         <div class="col-md-8">
           <input class="form-control" id="addressId" type="text" placeholder={{placeholder.address}}
-            formControlName="address" />
+            formControlName="address" [hidden]="!pickup!.value" />
         </div>
       </div>
 
