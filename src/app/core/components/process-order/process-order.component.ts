@@ -64,7 +64,7 @@ export class ProcessOrderComponent implements OnInit {
   }
 
   constructor(private fb: FormBuilder,
-    public errorMessageService: ErrorMessageService) { }
+              public errorMessageService: ErrorMessageService) { }
 
   ngOnInit(): void {
     this.buildForm();
@@ -88,7 +88,7 @@ export class ProcessOrderComponent implements OnInit {
     return this.fb.group({
       phoneNumber: ['',
         [Validators.required, Validators.pattern('[+][0-9]+')]]
-    })
+    });
   }
 
   onSave(): void {
@@ -97,10 +97,14 @@ export class ProcessOrderComponent implements OnInit {
   }
 
   onAddPhoneNumber(): void {
-    this.phoneNumbers!.push(this.buildPhoneNumbers());
+    if (this.phoneNumbers) {
+      this.phoneNumbers.push(this.buildPhoneNumbers());
+    }
   }
 
   onRemovePhoneNumber(index: number): void {
-    this.phoneNumbers!.removeAt(index);
+    if (this.phoneNumbers) {
+      this.phoneNumbers.removeAt(index);
+    }
   }
 }
