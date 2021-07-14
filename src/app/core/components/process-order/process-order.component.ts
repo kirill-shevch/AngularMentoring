@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { EmailDirective } from '../../directives/email.directive';
 import { CustomValidators } from '../../validators/custom.validators';
 
 @Component({
@@ -73,7 +74,7 @@ export class ProcessOrderComponent implements OnInit {
       lastName: 'Doe',
       email: [
         'johndoe@mail.com',
-        [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+'), Validators.email]
+        [Validators.required]
       ],
       phoneNumber: [
         '+12223334455',

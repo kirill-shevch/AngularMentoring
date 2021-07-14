@@ -33,13 +33,10 @@
         <label class="col-md-2 control-label" for="emailId">Email</label>
         <div class="col-md-8">
           <input class="form-control" id="emailId" type="email" placeholder={{placeholder.email}}
-            formControlName="email" />
+            formControlName="email" appEmailValidator />
           <span class="help-block" *ngIf="(email!.touched || email!.dirty) && email!.errors">
             <span *ngIf="email!.hasError('required')">
               Please enter your email address.
-            </span>
-            <span *ngIf="email!.hasError('pattern')">
-              Please enter a valid email address.
             </span>
             <span *ngIf="email!.hasError('email')">
               Please enter a valid email address.

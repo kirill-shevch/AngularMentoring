@@ -9,4 +9,16 @@ export class CustomValidators {
         }
         return null;
     }
+
+    static email(c: AbstractControl): ValidationErrors | null {
+        if (
+            c.value !== undefined &&
+            !c.value.toString().match('[a-z0-9._%+-]+@[a-z0-9.-]+')
+        ) {
+            return {
+                email: true
+            };
+        }
+        return null;
+    }
 }
