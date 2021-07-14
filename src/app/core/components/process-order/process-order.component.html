@@ -9,13 +9,13 @@
             formControlName="firstName" />
           <span class="help-block" *ngIf="(firstName!.touched || firstName!.dirty) && firstName!.errors">
             <span *ngIf="firstName!.hasError('required')">
-              Please enter your first name.
+              {{errorMessageService.firstNameRequired}}
             </span>
             <span *ngIf="firstName!.hasError('minlength')">
-              The first name must be longer than 3 characters.
+              {{errorMessageService.firstNameMinLength}}
             </span>
             <span *ngIf="firstName!.hasError('capitalLetter')">
-              The first name must start with a capital letter.
+              {{errorMessageService.firstNameCapitalLetter}}
             </span>
           </span>
         </div>
@@ -36,26 +36,40 @@
             formControlName="email" appEmailValidator />
           <span class="help-block" *ngIf="(email!.touched || email!.dirty) && email!.errors">
             <span *ngIf="email!.hasError('required')">
-              Please enter your email address.
+              {{errorMessageService.emailRequired}}
             </span>
             <span *ngIf="email!.hasError('email')">
-              Please enter a valid email address.
+              {{errorMessageService.emailInvalid}}
             </span>
           </span>
         </div>
       </div>
 
-      <div class="form-group"
-        [ngClass]="{'has-error': (phoneNumber!.touched ||  phoneNumber!.dirty) && phoneNumber!.invalid }">
-        <label class="col-md-2 control-label" for="phoneNumberId">Phone number</label>
-        <div class="col-md-8">
-          <input class="form-control" id="phoneNumberId" type="phone" placeholder={{placeholder.phoneNumber}}
-            formControlName="phoneNumber" />
-          <span class="help-block" *ngIf="(phoneNumber!.touched || phoneNumber!.dirty) && phoneNumber!.errors">
-            <span *ngIf="phoneNumber!.hasError('pattern')">
-              Please enter a valid phone number.
-            </span>
-          </span>
+      <div formArrayName="phoneNumbers">
+        <div *ngFor="let phoneNumber of phoneNumbers!.controls; let i = index" [formGroupName]="i">
+          <div class="form-group" id="{{'phoneNumber' + i}}"
+            [ngClass]="{'has-error': (phoneNumber!.touched ||  phoneNumber!.dirty) && phoneNumber!.invalid }">
+            <label class="col-md-2 control-label" for="phoneNumberId">Phone number</label>
+            <div class="col-md-8">
+              <input class="form-control" id="phoneNumberId" type="phone" placeholder={{placeholder.phoneNumber}}
+                formControlName="phoneNumber" />
+              <span class="help-block" *ngIf="(phoneNumber!.touched || phoneNumber!.dirty) && phoneNumber!.errors">
+                <span *ngIf="phoneNumber!.hasError('pattern')">
+                  {{errorMessageService.phoneInvalid}}
+                </span>
+              </span>
+            </div>
+          </div>
+          <div class="col-md-1 text-right" *ngIf="i>0">
+            <button class="btn btn-danger" (click)="onRemovePhoneNumber(i)">-</button>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-md-4 col-md-offset-2">
+          <button class="btn btn-primary" type="button" (click)="onAddPhoneNumber()">
+            +
+          </button>
         </div>
       </div>
 

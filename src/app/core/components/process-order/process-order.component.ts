@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EmailDirective } from '../../directives/email.directive';
+import { ErrorMessageService } from '../../services/error-message.service';
 import { CustomValidators } from '../../validators/custom.validators';
 
 @Component({
@@ -41,11 +42,11 @@ export class ProcessOrderComponent implements OnInit {
     return this.orderForm.get('email');
   }
 
-  get phoneNumber(): AbstractControl | null {
+  get phoneNumbers(): FormArray | null {
     if (!this.orderForm) {
       return null;
     }
-    return this.orderForm.get('phoneNumber');
+    return this.orderForm.get('phoneNumbers') as FormArray;
   }
 
   get pickup(): AbstractControl | null {
@@ -62,7 +63,8 @@ export class ProcessOrderComponent implements OnInit {
     return this.orderForm.get('address');
   }
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder,
+    public errorMessageService: ErrorMessageService) { }
 
   ngOnInit(): void {
     this.buildForm();
@@ -76,19 +78,29 @@ export class ProcessOrderComponent implements OnInit {
         'johndoe@mail.com',
         [Validators.required]
       ],
-      phoneNumber: [
-        '+12223334455',
-        [Validators.required, Validators.pattern('[+][0-9]+')]
-      ],
+      phoneNumbers: this.fb.array([this.buildPhoneNumbers()]),
       pickup: true,
       address: ''
     });
   }
 
+  private buildPhoneNumbers(): FormGroup {
+    return this.fb.group({
+      phoneNumber: ['',
+        [Validators.required, Validators.pattern('[+][0-9]+')]]
+    })
+  }
 
   onSave(): void {
     // Form model
     console.log(this.orderForm);
   }
 
+  onAddPhoneNumber(): void {
+    this.phoneNumbers!.push(this.buildPhoneNumbers());
+  }
+
+  onRemovePhoneNumber(index: number): void {
+    this.phoneNumbers!.removeAt(index);
+  }
 }
