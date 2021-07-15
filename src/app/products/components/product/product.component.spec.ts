@@ -7,10 +7,12 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { ProductComponent } from './product.component';
 import { Router } from '@angular/router';
 import { RouterStub } from 'src/app/testing-helpers/router-stub';
+import { CartService } from 'src/app/cart/services/cart.service';
 
 describe('ProductComponent', () => {
     let mockHttp: HttpTestingController;
     let router: Router;
+    let cartService: CartService;
     let component: ProductComponent;
     let fixture: ComponentFixture<ProductComponent>;
 
@@ -36,4 +38,14 @@ describe('ProductComponent', () => {
         expect(component).toBeTruthy();
     });
 
+    it('on buy', () => {
+        //Arrange
+        spyOn(component, 'onBuy');
+
+        //Act
+        component.onBuy();
+
+        //Assert
+        expect(component.onBuy).toHaveBeenCalled();
+    });
 });
