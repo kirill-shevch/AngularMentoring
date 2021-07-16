@@ -11,7 +11,7 @@ import { Product } from '../../models/product';
 export class ProductComponent {
 
   @Input()
-  product!: Product;
+  product: Product = { id: 0, name: 'testName', price: 1, available: true };
 
   constructor(private cartService: CartPromiseService,
               private router: Router) { }

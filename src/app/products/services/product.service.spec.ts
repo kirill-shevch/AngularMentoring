@@ -13,4 +13,12 @@ describe('ProductService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
+  it('should return correct number of elements', () => {
+    // Act
+    const products = service.getProducts();
+
+    // Assert
+    expect(products.subscribe(x => x.length === 4));
+  });
 });

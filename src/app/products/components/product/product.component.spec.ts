@@ -1,25 +1,50 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+/* tslint:disable:no-unused-variable */
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
+import { DebugElement } from '@angular/core';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
 import { ProductComponent } from './product.component';
+import { Router } from '@angular/router';
+import { RouterStub } from 'src/app/testing-helpers/router-stub';
+import { CartService } from 'src/app/cart/services/cart.service';
 
 describe('ProductComponent', () => {
-  let component: ProductComponent;
-  let fixture: ComponentFixture<ProductComponent>;
+    let mockHttp: HttpTestingController;
+    let router: Router;
+    let component: ProductComponent;
+    let fixture: ComponentFixture<ProductComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ ProductComponent ]
-    })
-    .compileComponents();
-  });
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            declarations: [ProductComponent],
+            imports: [HttpClientTestingModule],
+            providers: [{ provide: Router, useClass: RouterStub }]
+        })
+            .compileComponents();
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(ProductComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+        mockHttp = TestBed.inject(HttpTestingController);
+        router = TestBed.inject(Router);
+    }));
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    beforeEach(() => {
+        fixture = TestBed.createComponent(ProductComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
+
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
+
+    it('on buy', () => {
+        // Arrange
+        spyOn(component, 'onBuy');
+
+        // Act
+        component.onBuy();
+
+        // Assert
+        expect(component.onBuy).toHaveBeenCalled();
+    });
 });
