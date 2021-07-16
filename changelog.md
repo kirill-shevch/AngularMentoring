@@ -54,3 +54,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Add new component process-order to create orders
 - Add reactive form to create a new order
+
+## [0.0.9] - 2021-07-15
+### Added
+- Configure unit tests
+- Fix broken tests and remove obsolete tests
+- Add new tests for pipe and product component
