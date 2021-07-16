@@ -10,7 +10,7 @@ describe('Pipe: OrderBye', () => {
   });
 
   it('sorts descending correctly', () => {
-    //Arrange
+    // Arrange
     const pipe = new OrderByPipe();
     const products = [
       { id: 1, name: 'Lamp', price: 10, available: true },
@@ -19,10 +19,10 @@ describe('Pipe: OrderBye', () => {
       { id: 4, name: 'Table', price: 80, available: false }];
     const parameters = ['name'];
 
-    //Act
+    // Act
     const sortedProducts = pipe.transform(products, parameters, false);
 
-    //Assert
+    // Assert
     expect(sortedProducts[3].id).toBe(3);
     expect(sortedProducts[2].id).toBe(1);
     expect(sortedProducts[1].id).toBe(2);
@@ -30,7 +30,7 @@ describe('Pipe: OrderBye', () => {
   });
 
   it('sorts ascending correctly', () => {
-    //Arrange
+    // Arrange
     const pipe = new OrderByPipe();
     const products = [
       { id: 1, name: 'Lamp', price: 10, available: true },
@@ -39,10 +39,10 @@ describe('Pipe: OrderBye', () => {
       { id: 4, name: 'Table', price: 80, available: false }];
     const parameters = ['price'];
 
-    //Act
+    // Act
     const sortedProducts = pipe.transform(products, parameters, true);
 
-    //Assert
+    // Assert
     expect(sortedProducts[0].id).toBe(1);
     expect(sortedProducts[1].id).toBe(3);
     expect(sortedProducts[2].id).toBe(2);

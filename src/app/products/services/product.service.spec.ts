@@ -15,10 +15,10 @@ describe('ProductService', () => {
   });
 
   it('should return correct number of elements', () => {
-    //Act
+    // Act
     const products = service.getProducts();
 
-    //Assert
-    expect(products.subscribe(x => x.length == 4));
-  })
+    // Assert
+    expect(products.subscribe(x => x.length === 4));
+  });
 });

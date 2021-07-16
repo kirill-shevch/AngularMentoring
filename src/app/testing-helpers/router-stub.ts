@@ -1,5 +1,5 @@
-import { Injectable } from "@angular/core";
-import { NavigationExtras } from "@angular/router";
+import { Injectable } from '@angular/core';
+import { NavigationExtras } from '@angular/router';
 
 @Injectable()
 export class RouterStub {

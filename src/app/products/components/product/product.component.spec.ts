@@ -12,7 +12,6 @@ import { CartService } from 'src/app/cart/services/cart.service';
 describe('ProductComponent', () => {
     let mockHttp: HttpTestingController;
     let router: Router;
-    let cartService: CartService;
     let component: ProductComponent;
     let fixture: ComponentFixture<ProductComponent>;
 
@@ -39,13 +38,13 @@ describe('ProductComponent', () => {
     });
 
     it('on buy', () => {
-        //Arrange
+        // Arrange
         spyOn(component, 'onBuy');
 
-        //Act
+        // Act
         component.onBuy();
 
-        //Assert
+        // Assert
         expect(component.onBuy).toHaveBeenCalled();
     });
 });

@@ -11,10 +11,10 @@ import { Product } from '../../models/product';
 export class ProductComponent {
 
   @Input()
-  product: Product = { id: 0, name: "testName", price: 1, available: true };
+  product: Product = { id: 0, name: 'testName', price: 1, available: true };
 
   constructor(private cartService: CartPromiseService,
-    private router: Router) { }
+              private router: Router) { }
 
   onBuy(): void {
     console.log(`${this.product.name} bought! The price is ${this.product.price}`);
