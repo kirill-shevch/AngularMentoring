@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { EmailDirective } from '../../directives/email.directive';
 import { ErrorMessageService } from '../../services/error-message.service';
 import { CustomValidators } from '../../validators/custom.validators';
@@ -84,16 +84,15 @@ export class ProcessOrderComponent implements OnInit {
     });
   }
 
-  private buildPhoneNumbers(): FormGroup {
-    return this.fb.group({
-      phoneNumber: ['',
-        [Validators.required, Validators.pattern('[+][0-9]+')]]
-    });
+  private buildPhoneNumbers(): FormControl {
+    return this.fb.control("",
+        [Validators.required, Validators.pattern('[+][0-9]+')]
+    );
   }
 
   onSave(): void {
     // Form model
-    console.log(this.orderForm);
+    console.log(this.orderForm?.value);
   }
 
   onAddPhoneNumber(): void {

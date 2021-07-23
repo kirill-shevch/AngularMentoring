@@ -46,13 +46,13 @@
       </div>
 
       <div formArrayName="phoneNumbers">
-        <div *ngFor="let phoneNumber of phoneNumbers!.controls; let i = index" [formGroupName]="i">
+        <div *ngFor="let phoneNumber of phoneNumbers!.controls; let i = index" >
           <div class="form-group" id="{{'phoneNumber' + i}}"
             [ngClass]="{'has-error': (phoneNumber!.touched ||  phoneNumber!.dirty) && phoneNumber!.invalid }">
             <label class="col-md-2 control-label" for="phoneNumberId">Phone number</label>
             <div class="col-md-8">
               <input class="form-control" id="phoneNumberId" type="phone" placeholder={{placeholder.phoneNumber}}
-                formControlName="phoneNumber" />
+                     [formControlName]="i" />
               <span class="help-block" *ngIf="(phoneNumber!.touched || phoneNumber!.dirty) && phoneNumber!.errors">
                 <span *ngIf="phoneNumber!.hasError('pattern')">
                   {{errorMessageService.phoneInvalid}}
